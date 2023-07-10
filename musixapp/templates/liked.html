@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <style>
+      #c{
+      height:100%;
+      padding:70px;
+      }
+#x{
+height:200px;
+width:200px;
+ background-color: #6600ff;
+}
+#z{
+padding:50px;
+}
+#c,#x{
+background: linear-gradient(to bottom, #6600cc 0%, black 100%)
+}
+    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/4f163060e5.js" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="c" class="container-fluid">
+  <div id="x" class="shadow">
+    <i class="fa-solid fa-heart fa-5x" style="color:white" id="z"></i>
+</div>
+    <br>
+    <h1 style="color:white"><b>LIKED SONGS</b></h1>
+    <br>
+    <h3 style="color:white">{{username}}</h3>
+    <br>
+    <hr style="color:white">
+    <br>
+    {% for i,j,k,l,m in mylist %}
+    {% if usid == m %}
+    <ul type="none">
+  <li>
+      <img src="{% static j %}" height="50px" width="50px">&nbsp;&nbsp;&nbsp;&nbsp;
+  <a href="http://127.0.0.1:8000/musixapp/like/{{l}}" style="font-family:Georgia, 'Times New Roman', Times, serif;font-size:larger;text-decoration: none;color:white;">{{i}}</a><a href="http://127.0.0.1:8000/musixapp/likedelete/{{l}}" style="text-decoration: none;color:white;"><i class="fa-solid fa-heart" style="color:green;float:right" >  </i></a>
+  </li>
+  <hr>
+    </ul>
+    {% endif %}
+    {% endfor %}
+</div>
+</body>
+</html>
