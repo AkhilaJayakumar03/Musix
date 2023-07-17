@@ -13,6 +13,5 @@ urlpatterns=[
     path('like/<int:id>',liked),
     path('likedelete/<int:id>',likedelete),
     path('logout/',user_logout),
-    # path('like/<int:pk>',Likeview,name='song_post')
 
 ]

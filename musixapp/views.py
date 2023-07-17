@@ -58,25 +58,6 @@ def userlogin(request):
         return redirect(home)
     return render(request,"userlogin.html")
 
-# def musicupload(request):
-#     if request.method == 'POST':
-#         a = songuploadform(request.POST, request.FILES)
-#         if a.is_valid():
-#             fn=a.cleaned_data["filmname"]
-#             mn=a.cleaned_data["musicname"]
-#             im=a.cleaned_data["image"]
-#             si=a.cleaned_data["singers"]
-#             ln = a.cleaned_data["language"]
-#             au = a.cleaned_data["audio"]
-#             b=songupload(filmname=fn,musicname=mn,image=im,singers=si,language=ln,audio=au)
-#             b.save()
-#             request.session['id']=id
-#             return HttpResponse("song upload successfully.....")
-#         else:
-#             return HttpResponse("song upload failed.....")
-#     return render(request,"musicupload.html")
-
-
 def home(request):
     a=songupload.objects.all().order_by('id')
     paginator = Paginator(a,8)
@@ -126,11 +107,6 @@ def likes(request,id):
     b.save()
     messages.success(request, "liked")
     return redirect(home)
-
-# def Likeview(request,pk):
-#     post=get_object_or_404(songupload,id=request.POST.get('post_id'))
-#     post.likes.add(request.user)
-#     return HttpResponseRedirect(reverse('homes',args=[str(id)]))
 
 def likedisplay(request):
     usid = request.session['id']
