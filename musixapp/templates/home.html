@@ -29,7 +29,7 @@ padding:25px;
 <body>
   <nav class="navbar fixed-top  navbar-expand-lg">
             <div class="container-fluid">
-                  <div class="d-flex">
+                  <div class="d-flex" >
                   <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-lg-0">
                             <li class="nav-item dropdown">
@@ -37,7 +37,6 @@ padding:25px;
                                     {{username}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                  <li><a class="dropdown-item" href="http://127.0.0.1:8000/employeeapp/empdetails/">Profile</a></li>
                                     <li><a class="dropdown-item" href="http://127.0.0.1:8000/musixapp/likedisplay/">Liked Songs</a></li>
                                   <li><a class="dropdown-item" href="http://127.0.0.1:8000/musixapp/logout/">Logout</a></li>
                                 </ul>
@@ -46,6 +45,15 @@ padding:25px;
             </div>
           </nav>
 <br><br><br>
+        <div class="form shadow">
+{% if messages %}
+    {% for message in messages %}
+    <div  class="container alert alert-success">
+        <a href="http://127.0.0.1:8000/musixapp/home/"  style="float:right;"><i class="fa-solid fa-xmark fa-2x text-success"></i></a>
+        {{message}}
+    {% endfor %}
+    </div>
+{% endif %}
     <div id="o" class="row">
 {% for i,j,k,l,m,n,o in mylist %}
         <div class="col-lg-3 col-md-6 col-sm-12 p-4">

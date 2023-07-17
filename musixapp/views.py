@@ -2,9 +2,14 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, logout
 from django.core.paginator import Paginator
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import *
+from django.http import HttpResponseRedirect
+from django.urls import reverse_lazy,reverse
 from .forms import *
+
+
+
 
 # Create your views here.
 def index(request):
@@ -115,10 +120,17 @@ def likes(request,id):
     c = request.session['id']
     a = songupload.objects.get(id=id)
     if like.objects.filter(userid=c, musicname=a.musicname):
-        return HttpResponse("Already liked")
+        messages.success(request,"already liked")
+        return redirect(home)
     b = like(userid=c, filmname=a.filmname,musicname=a.musicname,singers=a.singers,image=a.image,audio=a.audio)
     b.save()
+    messages.success(request, "liked")
     return redirect(home)
+
+# def Likeview(request,pk):
+#     post=get_object_or_404(songupload,id=request.POST.get('post_id'))
+#     post.likes.add(request.user)
+#     return HttpResponseRedirect(reverse('homes',args=[str(id)]))
 
 def likedisplay(request):
     usid = request.session['id']
@@ -157,3 +169,5 @@ def likedelete(request,id):
 def user_logout(request):
     logout(request)
     return render(request,"index.html")
+
+
